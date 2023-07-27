@@ -44,11 +44,11 @@ const PostCard = ({ address, contract }) => {
         <div className="flex items-center  ">
             {loading ?
                 <div>
-                    <BiLoaderAlt className='animate-spin p-1 mt-12 rounded-xl items-center flex flex-col w-[400px] sm:w-[550px]' size={50} />
+                    <BiLoaderAlt className='animate-spin p-1 mt-12 rounded-xl items-center flex flex-col w-[400px] sm:w-[650px]' size={50} />
                 </div>
                 : <div>
                     {!isEmpty &&
-                        <div className=" mt-1 flex  h-[530px] border-light-100 border-x-[1px] mb-6 flex-col w-[400px] sm:w-[550px] rounded-xl ">
+                        <div className=" mt-1 flex  border-light-100 border-x-[1px] mb-6 flex-col  sm:w-[650px] rounded-xl ">
                             <div className=" mt-1 mb-3  text-xl relative flex flex-row px-2">
                                 <div className=' ml-2'>
                                     {userDetails?.Image === '' && <FaUserCircle className='mr-1' size={30} />}
