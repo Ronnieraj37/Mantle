@@ -5,9 +5,6 @@ import PeerChat from "../artifacts/contracts/PeerChat.sol/PeerChat.json"
 import Registration from './Registration';
 import { BiLoaderAlt } from "react-icons/bi"
 
-import Lottie from "lottie-react";
-import titleAnimation from "../assets/Animation - 1689234927591.json";
-
 const Home = ({ setverified, setaccount, contract, setaccountDetails, connected, account, setcontract, setprovider, setconnected }) => {
   const [newUser, setnewUser] = useState(false);
   const [name, setname] = useState('');
@@ -162,14 +159,12 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
   }, [connected, isVerified]);
 
   return (
-    <div >
-      <div className="flex flex-col  items-center -mt-5  font-serif justify-center ">
-        <div className=" flex flex-row">
-          <Lottie animationData={titleAnimation} loop={false} className="bg-white z-10 rounded-l-3xl mt-[10px] mr-[1.9px] scale-[200%] h-[20px]" />
-          <h1 className='text-blue-500 px-2  bg-white rounded-r-3xl z-0 text-4xl'>endork</h1>
+    <div className='flex relative w-[1300px]' >
+      <div className="flex font-serif  ">
+        <div className=" flex flex-row mt-4 mb-[30px]">
+          <h1 className='text-blue-500 px-2  rounded-3xl z-0 text-4xl'>Vendork</h1>
         </div>
-        <hr className="h-[30px]" />
-        <div className='ml-[330px] sm:ml-[420px]'>
+        <div className='absolute top-5 right-5 items-end justify-end'>
           {connected ? <div className=' py-1 px-4 rounded-xl bg-green-600'>Connected</div> : <button className=' py-1  px-4 rounded-xl bg-blue-500' onClick={connectFetch}>
             <p className="">Connect</p>
           </button>}

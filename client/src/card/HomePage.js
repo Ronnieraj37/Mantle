@@ -102,60 +102,56 @@ const HomePage = ({ contract }) => {
     }, [friends])
 
     return (
-        <div>
-            <div className="relative flex flex-col items-center mt-3 max-h-[550px] w-[400px] sm:w-[550px]">
-                <Toaster />
-                <div className="flex flex-row">
-                    <div className='p-2 flex justify-center items-center text-[#c8d2f7]  text-2xl '>
-                        Home
-                    </div>
+        <div className="relative flex flex-col items-center mt-3 max-h-[530px] w-[750px]">
+            <Toaster />
+            {noFriends ?
+                <div className="p-2 text-xl flex flex-col items-center justify-center w-[800px] rounded-xl bg-transparent h-[530px]">
+                    <div >Add Friends for Posts</div>
+                    <Lottie animationData={friendsAnimation} className=" scale-[140%] h-[230px]" />
                 </div>
-                {noFriends ?
-                    <div className="p-2 text-xl flex flex-col items-center justify-center w-[400px] sm:w-[550px] rounded-xl bg-transparent h-[476px]">
-                        <div >Add Friends for Posts</div>
-                        <Lottie animationData={friendsAnimation} className=" scale-[140%] h-[230px]" />
-                    </div>
-                    :
-                    <div>
-                        {data &&
-                            <div className="flex overflow-auto flex-col  w-[400px] sm:w-[550px] rounded-xl bg-[#0b2f42] h-[476px]">
-                                {friends.map((friend, i) => {
-                                    return (
-                                        <div key={i} className='py-2'>
-                                            <PostCard address={friend.friendAddress} contract={contract} />
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        }
-                    </div>
-                }
-                {isImageReq &&
-                    <div className="items-center text-md justify-end rounded-3xl -mt-16 py-3 px-3 bg-[#20202b]">
-                        <p className="px-4">{fileName}</p>
-                        {uploading ?
-                            <BiLoaderAlt className='animate-spin absolute p-1 rounded-xl right-4 bottom-2' size={30} />
-                            :
-                            <FiUpload onClick={uploadImage} className="absolute hover:bg-[#20202b] p-1 rounded-xl right-4 bottom-2" size={30} />
-                        }
-                    </div>
-                }
-                {!isImageReq &&
-                    <button onClick={getImage} className="items-end absolute right-0.5 bottom-1 text-md justify-end rounded-3xl -mt-12 mb-1 mr-2 py-3 px-3 bg-[#20202b]">
-                        <IoMdAdd size={25} />
-                    </button>
-                }
-                <input
-                    disabled={uploading}
-                    type="file"
-                    name="data"
-                    accept="image/*"
-                    ref={hiddenFileInput}
-                    style={{ display: 'none' }}
-                    onChange={retrieveFile}
-                />
-            </div>
+                :
+                <div>
+                    {data &&
+                        <div className="flex overflow-auto flex-col items-center rounded-xl w-[750px] h-[530px]">
+                            {friends.map((friend, i) => {
+                                return (
+                                    <div key={i} className='py-2'>
+                                        <PostCard address={friend.friendAddress} contract={contract} />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
+                </div>
+            }
 
+            {isImageReq &&
+                <div className="items-center text-md justify-end rounded-3xl py-3 px-3 bg-[#20202b]">
+                    <p className="px-4">{fileName}</p>
+                    {uploading ?
+                        <BiLoaderAlt className='animate-spin  p-1 rounded-xl right-4 bottom-2' size={30} />
+                        :
+                        <FiUpload onClick={uploadImage} className=" hover:bg-[#20202b] p-1 rounded-xl right-4 bottom-2" size={30} />
+                    }
+                </div>
+            }
+            {!isImageReq &&
+                <button onClick={getImage} className='flex bg-blue-600  flex-row items-end text-[17px] justify-end rounded-3xl mt-3 mb-1 mr-2 py-2 px-4 '>
+                    <p>Post</p>
+                    < div className="ml-3">
+                        <IoMdAdd size={25} />
+                    </div>
+                </button>
+            }
+            <input
+                disabled={uploading}
+                type="file"
+                name="data"
+                accept="image/*"
+                ref={hiddenFileInput}
+                style={{ display: 'none' }}
+                onChange={retrieveFile}
+            />
         </div>
     )
 }

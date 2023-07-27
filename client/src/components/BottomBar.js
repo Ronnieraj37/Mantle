@@ -3,11 +3,12 @@ import FriendList from '../card/FriendList';
 import Search from '../card/Search';
 import Chat from '../card/Chat';
 import HomePage from '../card/HomePage';
-import Lottie from "lottie-react";
-import friendsAnimation from "../assets/98723-search-users.json";
-import searchAnimation from "../assets/96916-searching.json";
-import chatAnimation from "../assets/97169-bubble-chat.json";
-import homeAnimation from "../assets/animation_lk027sqg.json";
+import { BsSearch } from "react-icons/bs";
+import { FcSearch, FcHome, FcList, FcSms } from "react-icons/fc";
+import { AiOutlineHome } from "react-icons/ai"
+import { BsChatLeftDots } from "react-icons/bs"
+import { FiList } from "react-icons/fi";
+import Profile from './Profile';
 
 const BottomBar = ({ accountDetails, account, contract }) => {
   const [selected, setselected] = useState(1);
@@ -24,8 +25,57 @@ const BottomBar = ({ accountDetails, account, contract }) => {
     setselected(1);
   }
   return (
-    <div>
-      <div className="flex flex-col items-center bg-black mt-4 py-1 h-[550px]  sm:w-[600px] rounded-lg ">
+    <div className='flex flex-row -ml-5'>
+
+      <div className=" flex-col w-[200px] rounded-3xl ">
+        <button onClick={toProfile} className={` rounded-3xl px-7 py-4 items-center flex flex-row ${selected === 0 ? " bg-[#081e2b] scale-[105%] text-2xl" : "hover: hover:bg-[#081e2b]"}`}>
+          {selected === 0 ?
+            <FcSearch className=" h-[30px] scale-[130%] " />
+            :
+            <BsSearch className=" h-[30px] scale-[130%] " />
+          }
+          <div className={`ml-6 text-lg font-light font-sans sm:flex hidden ${selected === 0 ? " text-xl" : ""} `}>
+            Search
+          </div>
+        </button>
+        <button onClick={toHome} className={` rounded-3xl mt-7 px-7 py-4 items-center flex flex-row ${selected === 1 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
+          {selected === 1 ?
+            <FcHome className=" h-[30px] scale-[170%] " />
+            :
+            <AiOutlineHome className=" h-[30px] scale-[150%] " />
+          }
+          <div className={`ml-4 text-lg font-light font-sans sm:flex hidden ${selected === 1 ? " text-xl" : ""} `}>
+            Home
+          </div>
+        </button>
+        <button onClick={toChat} className={` rounded-3xl mt-7 px-7 py-4  items-center flex flex-row ${selected === 2 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
+          {selected === 2 ?
+            <FcSms className=" h-[30px] scale-[180%] " />
+            :
+            <BsChatLeftDots className=" h-[30px] scale-[130%] " />
+          }
+          <div className={`ml-6 text-lg font-light font-sans sm:flex hidden ${selected === 2 ? " text-xl" : ""} `}>
+            Chat
+          </div>
+        </button>
+        <button onClick={toFriends} className={` rounded-3xl mt-7 px-7 py-4  items-center flex flex-row ${selected === 3 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
+          {selected === 3 ?
+            <FcList className=" h-[30px] scale-[170%] " />
+            :
+            <FiList className=" h-[30px] scale-[150%] " />
+          }
+          <div className={`ml-4 text-lg font-light font-sans sm:flex hidden ${selected === 3 ? " text-xl" : ""} `}>
+            Requests
+          </div>
+        </button>
+        <button className={` rounded-3xl mt-7  px-7 py-4  items-center flex flex-row ${selected === 4 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
+          <Profile contract={contract} accountDetails={accountDetails} account={account} />
+        </button>
+      </div>
+      <div
+        class="ml-8 inline-block h-[400px] min-h-[1em] w-[2px] self-stretch bg-neutral-100 opacity-100 dark:opacity-50">
+      </div>
+      <div className="flex flex-row items-center justify-center -mt-4 h-[500px] ml-16 sm:w-[800px] rounded-lg ">
         {selected === 0 &&
           <div>
             <Search contract={contract} />
@@ -47,34 +97,6 @@ const BottomBar = ({ accountDetails, account, contract }) => {
             <FriendList contract={contract} />
           </div>
         }
-      </div>
-      <div className="flex flex-row items-center justify-around py-1  bg-black  sm:w-[600px] rounded-xl ">
-        <button onClick={toProfile} className={` rounded-xl px-7 py-4 sm:px-3 mx-4 items-center flex flex-row ${selected === 0 ? " bg-[#0b2f42]" : "hover:bg-[#0b2f42]"}`}>
-          <Lottie animationData={friendsAnimation} className=" scale-[210%] h-[30px]" />
-          <div className="ml-4 text-lg font-light font-sans sm:flex hidden ">
-            Search
-          </div>
-        </button>
-        <button onClick={toHome} className={` rounded-xl px-7 py-4 sm:px-3 mx-4  items-center flex flex-row ${selected === 1 ? " bg-[#0b2f42]" : "hover:bg-[#0b2f42]"}`}>
-          <Lottie animationData={homeAnimation} className=" scale-[140%] h-[30px]" />
-          <div className="ml-4 px-1 text-lg font-light font-sans sm:flex hidden ">
-            Home
-          </div>
-        </button>
-        <button onClick={toChat} className={` rounded-xl px-7 py-4 sm:px-3 mx-4 items-center flex flex-row ${selected === 2 ? " bg-[#0b2f42]" : "hover:bg-[#0b2f42]"}`}>
-          <Lottie animationData={chatAnimation} className=" scale-[250%] w-[30px]" />
-          <div className="ml-4 text-lg font-light font-sans sm:flex hidden ">
-            Chat
-          </div>
-        </button>
-        <button onClick={toFriends} className={` rounded-xl px-7 py-4 sm:px-3 mx-4  items-center flex flex-row ${selected === 3 ? " bg-[#0b2f42]" : "hover:bg-[#0b2f42]"}`}>
-          <Lottie animationData={searchAnimation} className=" scale-[190%] h-[30px]" />
-          <div className="ml-4 text-lg font-light font-sans sm:flex hidden ">
-            Friends
-          </div>
-        </button>
-
-
       </div>
     </div>
 

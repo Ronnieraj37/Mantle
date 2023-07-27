@@ -3,6 +3,7 @@ import { IoMdSend } from 'react-icons/io'
 import { ImAttachment } from 'react-icons/im'
 import { BiLoaderAlt } from 'react-icons/bi'
 import { toast, Toaster } from "react-hot-toast";
+import { IoIosTimer } from "react-icons/io";
 import ChatText from './ChatText';
 import axios from "axios";
 const JWT = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwZTUyNmI4Yy1hNmIzLTQyMGYtOTM5ZC0zZjUzZmRjZjA4ODMiLCJlbWFpbCI6InJvbm5pZXJhanNpbmdoQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI5OTZjNTJkYmFkZjFhZGZmOGU0YSIsInNjb3BlZEtleVNlY3JldCI6ImEyYmFjNjBjNzdlZGQ1ZDdhYTBhYTExNzY5OWZjYWJmMzc0ZmQxNTQzODZhMDQ5NTRmZTMzZTAxNWZlZTg0NzkiLCJpYXQiOjE2ODcyNDUzODJ9.CHifyXne4nGhyQcTSU8kVMFMdNaFktGpK45JdKiHVtI`
@@ -137,9 +138,9 @@ const ChatScreen = ({ contract, user }) => {
     return (
         <div>
             <Toaster />
-            <div className=' flex items-end justify-center text-[17px] text-white w-[400px] sm:w-[550px] h-[420px] rounded-b-2xl bg-[#0b2f42]'>
+            <div className=' flex items-end justify-center text-[17px]  h-[450px] w-[750px] rounded-b-2xl bg-[#0b2f42]'>
                 <div className='overflow-auto mb-1 pt-1  h-[420px] '>
-                    {messages.length === 0 ? <div className="flex flex-row h-[410px] text-xl items-center justify-center">Say Hi! </div> :
+                    {messages.length === 0 ? <div className="flex flex-row h-[450px] text-xl items-center justify-center">Say Hi! </div> :
                         <div>
                             {messages.map((msg, i) => {
                                 return (
@@ -151,7 +152,7 @@ const ChatScreen = ({ contract, user }) => {
                 </div>
 
             </div>
-            <div className='relative flex flex-col w-[400px] sm:w-[550px] mt-1 rounded-2xl '>
+            <div className='relative flex flex-col w-[750px] mt-1 rounded-2xl '>
                 <div>
                     {isImageReq ?
                         <div className=" truncate h-[57px] block w-8/12 sm:w-9/12  p-4 pl-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ">{fileName}</div>
@@ -169,6 +170,9 @@ const ChatScreen = ({ contract, user }) => {
                     }
                 </div>
                 <div className='flex flex-col'>
+                    <button className=" absolute right-[130px] bottom-2.5 p-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <IoIosTimer size={22} className='scale-[120%]' />
+                    </button>
                     <button onClick={sendImage} className=" absolute right-[70px] bottom-2.5 p-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <ImAttachment size={22} />
                     </button>

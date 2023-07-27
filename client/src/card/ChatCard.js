@@ -47,7 +47,7 @@ const ChatCard = ({ contract, address }) => {
         <div className=''>
             <Toaster />
             {fetched &&
-                <div className='flex flex-col justify-center text-lg text-white w-[360px] sm:w-[450px] h-[100px] p-6 rounded-2xl bg-[#0b2f42]'>
+                <div className=' border-x-[1px] flex flex-col justify-center text-lg  w-[750px] h-[100px] p-6 rounded-2xl bg-[#0b2f42]'>
                     <div className='flex flex-row  pb-2'>
                         <div className='mt-2'>
                             {user?.Image === '' && <FaUserCircle className='mr-3' size={50} />}
@@ -55,10 +55,10 @@ const ChatCard = ({ contract, address }) => {
                         </div>
                         <div className='ml-2 mt-2 '>
                             <div className='truncate font-light text-[22px]'>{user?.Name}</div>
-                            <div className='truncate w-[250px] sm:w-[300px] text-[#a5c7d9] pt-[2px]'>{messages}</div>
+                            <div className=' truncate w-[600px] pt-[2px]'>{messages}</div>
                         </div>
                     </div>
-                    <div className='font-light pt-2 text-[#9dbac9]'>
+                    <div className='font-light pt-2 '>
                     </div>
                 </div>
             }

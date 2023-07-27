@@ -66,14 +66,14 @@ const ChatText = ({ user, msg, setsendMsg, setloading }) => {
     <div>
       <Toaster />
       <div className="relative flex flex-row">
-        <div onMouseEnter={() => { sethoover(true) }} onMouseLeave={() => { sethoover(false) }} className={`flex relative hover:bg-gray-600  justify-start whitespace-normal mb-1 mt-1 sm:w-[200px] sm:mx-1 px-4 w-[160px] py-3 rounded-2xl ${breakWord ? "break-all" : "break-before-auto"} ${msg[0] === user.friendAddress ? "sm:mr-80 mr-56 bg-gray-700 " : "sm:ml-80 ml-56 bg-gray-500 "} `}>
+        <div onMouseEnter={() => { sethoover(true) }} onMouseLeave={() => { sethoover(false) }} className={`flex relative hover:bg-gray-600  justify-start whitespace-normal mb-1 mt-1 mx-1 px-4 w-[300px] py-3 rounded-2xl ${breakWord ? "break-all" : "break-before-auto"} ${msg[0] === user.friendAddress ? "mr-96  bg-gray-700 " : "ml-96 bg-gray-500 "} `}>
           {msg[1] ? <div>{msg[2]}</div> : <img onClick={openImage} src={msg[2]} className='h-max' />}
           {hoover &&
             <div onClick={replyAI}>
               <TbWindmill className="absolute p-1 top-0.5 right-0.5 hover:bg-[#0d3d57] rounded-xl" size={23} />
             </div>
           }
-          <p className="absolute pr-1 text-xs bottom-[0px] right-0.5 font-light text-[#e1e2e3]">{time}</p>
+          <p className="absolute pr-1 text-xs bottom-[0px] right-0.5 font-light ">{time}</p>
         </div>
       </div>
     </div>

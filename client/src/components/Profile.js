@@ -58,14 +58,7 @@ const Profile = ({ contract, accountDetails, account }) => {
       const result = await contract.getUserDetails(account);
       setaccountInfo(result);
     } catch (error) {
-      toast.error("Error in getting",
-        {
-          style: {
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-          },
-        });
+      console.log(error);
     }
   }
   useEffect(() => {
@@ -75,12 +68,12 @@ const Profile = ({ contract, accountDetails, account }) => {
     }
   }, [file, accountInfo]);
   return (
-    <div className='flex flex-col items-start justify-start -mt-8 ml-2 text-white'>
+    <div className='flex -ml-1 flex-col items-start justify-start  '>
       <Toaster />
       <div className='flex flex-row'>
         <button onClick={() => { setmodal(!modal) }} className='flex flex-row'>
-          {accountInfo?.Image == '' && <FaUserCircle className='mr-2' size={33} />}
-          {accountInfo?.Image != '' && <img src={accountInfo?.Image} className="mr-2 w-[33px] h-[33px] rounded-full" />}
+          {accountInfo?.Image === '' && <FaUserCircle className='mr-2' size={33} />}
+          {accountInfo?.Image !== '' && <img src={accountInfo?.Image} className="mr-2 w-[33px] h-[33px] rounded-full" />}
           <div className='text-xl font-light'>{accountInfo?.Name}</div>
         </button>
         {modal && <FaAngleUp onClick={() => { setmodal(!modal) }} className=' ml-1 mt-1' size={20} />}

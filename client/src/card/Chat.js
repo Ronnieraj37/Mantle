@@ -48,20 +48,20 @@ const Chat = ({ contract }) => {
     return (
         <div>
             <Toaster />
-            {loading && <div className='flex flex-col items-center relative'>
+            {loading && <div className='flex flex-col items-center relative  h-[530px] w-[750px]'>
                 <BiLoaderAlt className='mt-64 animate-spin' size={45} />
             </div>}
-            {!loading && <div>
+            {!loading && <div className=' flex flex-col items-center  h-[530px] w-[750px]'>
 
-                {!chatOpen && <div className='p-2 flex justify-center items-center text-[#c8d2f7] my-2 text-2xl'>Chat</div>
-                }
+                {/* {!chatOpen && <div className='p-2 flex justify-center items-center my-2 text-2xl'>Chat</div>
+                } */}
                 {noFriends &&
                     <div className="flex flex-col items-center">
                         <div className="mt-28 text-xl">Add Friends to Chat</div>
                         <Lottie animationData={friendsAnimation} className=" scale-[140%] h-[230px]" />
                     </div>
                 }
-                {chatOpen && <div className=' mt-3 max-h-[480px] w-[400px] sm:w-[550px]'>
+                {chatOpen && <div className=' mt-3 h-[530px] w-[750px]'>
                     <div className=' relative flex py-3 flex-row h-[48px] justify-center rounded-t-2xl bg-[#0b2f42]'>
                         <MdOutlineKeyboardBackspace onClick={closeChat} className='absolute left-3.5 top-2 rounded-xl hover:bg-[#0b2f42] ' size={32} />
                         <div className='flex items-center font-sans font-light text-[24px] justify-center'>
@@ -75,7 +75,7 @@ const Chat = ({ contract }) => {
                     {!noFriends && <div>
                         {friends.map((friend, i) => {
                             return (
-                                <div onClick={() => { openChat(i) }} key={i} className='py-2'>
+                                <div onClick={() => { openChat(i) }} key={i} className='mt-4 py-2'>
                                     <ChatCard contract={contract} address={friend[1]} />
                                 </div>
                             )

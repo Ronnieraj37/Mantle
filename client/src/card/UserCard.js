@@ -13,7 +13,7 @@ const UserCard = ({ user }) => {
     }
   }, [])
   return (
-    <div className='flex flex-col text-lg text-white w-[350px] sm:w-[500px] h-[220px] p-6 rounded-2xl bg-[#0b2f42]'>
+    <div className='flex flex-col text-lg  w-[350px] sm:w-[500px] h-[220px] p-6 rounded-2xl bg-[#0b2f42]'>
       <div className='flex flex-row  pb-2'>
         <div>
           {user?.Image === '' && <FaUserCircle className='mr-3' size={100} />}

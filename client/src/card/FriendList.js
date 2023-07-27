@@ -95,14 +95,14 @@ const FriendList = ({ contract }) => {
         getFriendReq();
     }
     return (
-        <div>
+        <div className='h-[480px]  w-[800px]'>
             <Toaster />
-            <div className='p-2 flex justify-center items-center text-[#c8d2f7] my-2 text-2xl'>Friend Requests</div>
-            {noReq && <div className='m-7 flex flex-col items-center mt-28'>
+            {/* <div className='p-2 flex justify-center items-center text-[#c8d2f7] my-2 text-2xl'>Friend Requests</div> */}
+            {noReq && <div className='p-12 flex flex-col items-center '>
                 <h2 className='flex flex-row font-serif text-2xl'>No Requests</h2>
-                <Lottie animationData={friendsAnimation} loop={true} className="mt-4 scale-[170%] h-[180px]"/>
+                <Lottie animationData={friendsAnimation} loop={true} className="mt-4 scale-[170%] h-[180px]" />
             </div>}
-            {!noReq && <div className='overflow-auto h-[480px]'>
+            {!noReq && <div className='overflow-auto h-[480px] mt-4 w-[800px]'>
                 {friendReq.map((friend, i) => {
                     return (
                         <div key={i} className='scale-[86%] flex flex-col bg-[#0b2f42] rounded-xl '>

@@ -11,10 +11,9 @@ function App() {
   const [accountDetails, setaccountDetails] = useState(null);
   useEffect(() => { }, [connected, verified]);
   return (
-    <div className="bg-[#20202b] relative items-center flex flex-col min-h-screen p-4 text-white">
-      <div className=" flex flex-col p-4 text-white">
+    <div className="bg-black text-white relative justify-start items-start flex flex-col min-h-screen px-4">
+      <div className=" flex -mt-4 flex-col p-8 ">
         <Home setaccount={setaccount} setverified={setverified} setaccountDetails={setaccountDetails} connected={connected} contract={contract} account={account} setprovider={setprovider} setcontract={setcontract} setconnected={setconnected} />
-        {verified && <Profile account={account} accountDetails={accountDetails} contract={contract} />}
       </div>
       <div className="sm:mx-12">
         {verified && <BottomBar accountDetails={accountDetails} contract={contract} />}
