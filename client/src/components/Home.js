@@ -26,7 +26,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
         try {
           await ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0x1389' }],
+            params: [{ chainId: '0x13881' }],
           });
         } catch (switchError) {
           // This error code indicates that the chain has not been added to MetaMask.
@@ -35,19 +35,19 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
             window.ethereum.request({
               method: 'wallet_addEthereumChain',
               params: [{
-                chainId: '0x1389',
-                chainName: 'Mantle Testnet',
+                chainId: '0x13881',
+                chainName: 'Polygon',
                 nativeCurrency: {
-                  name: 'Mantle',
-                  symbol: 'MNT',
+                  name: 'Mumbai',
+                  symbol: 'MATIC',
                   decimals: 18
                 },
-                rpcUrls: ['https://rpc.testnet.mantle.xyz'],
-                blockExplorerUrls: ['https://explorer.testnet.mantle.xyz']
+                rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+                blockExplorerUrls: ['https://mumbai.polygonscan.com']
               }]
             })
               .catch((error) => {
-                toast.error("Add Mantle to MetaMask",
+                toast.error("Add Mumbai to MetaMask",
                   {
                     style: {
                       borderRadius: '10px',
@@ -63,7 +63,8 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
         const address = await signer.getAddress();
         setaccount(address);
         // let contractAddress = "0x67CB05bb62b72DCbd359670acEb53E0159bda947"; // xdc
-        let contractAddress = "0x196d4119944CD005AD917466B8e2e2Ec018FA547" //mantle
+        // let contractAddress = "0x196d4119944CD005AD917466B8e2e2Ec018FA547" //mantle
+        let contractAddress = "0xEe5684B9c5045054fB2C24B5f03D0bE9A1448594"; //mumbai
         const contractInstance = new ethers.Contract(
           contractAddress,
           PeerChat.abi,
@@ -180,8 +181,8 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
       {!Loading &&
         <div>
           {modalOpen &&
-            <div className='flex flex-col items-center relative' >
-              {isVerified && <div className="mt-10 flex flex-col items-center">
+            <div className='flex flex-col w-[1000px]  items-center relative' >
+              {isVerified && <div className="mt-36 flex flex-col items-center">
                 <div className='flex p-3 items-center justify-around '>
                   <input onChange={(event) => { setname(event.target.value) }} className='m-1 text-black px-1 py-2 rounded-xl' required placeholder=' Name' type='text' />
                   <input className='m-1 text-black px-1 py-2 disabled:bg-slate-300 rounded-xl' required value={number} disabled type='number' />

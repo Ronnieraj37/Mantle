@@ -122,7 +122,7 @@ const Registration = ({ contract, setisVerified, setnumber }) => {
     setisVerified(true);
   }
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center w-[1000px] mt-16'>
       <div id='recaptcha-container'></div>
       <Toaster toastOptions={{ duration: 3000 }} />
       {!verification && <div className='flex flex-col items-center justify-center rounded-xl'>
