@@ -61,7 +61,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
         setaccount(address);
         // let contractAddress = "0x67CB05bb62b72DCbd359670acEb53E0159bda947"; // xdc
         // let contractAddress = "0x196d4119944CD005AD917466B8e2e2Ec018FA547" //mantle
-        let contractAddress = "0x48de2c416E84A0aAb427FB87E7142476DdB0cBC2"; //mumbai
+        let contractAddress = "0x0c4ab2D86c81B11DA6A1cC7649E2df2F04E423F5"; //mumbai
         const contractInstance = new ethers.Contract(
           contractAddress,
           PeerChat.abi,
