@@ -102,7 +102,7 @@ const HomePage = ({ contract }) => {
     }, [friends])
 
     return (
-        <div className="relative flex flex-col items-center mt-3 max-h-[530px] w-[750px]">
+        <div className="relative flex flex-col items-center mt-3 h-[530px] w-[750px]">
             <Toaster />
             {noFriends ?
                 <div className="p-2 text-xl flex flex-col items-center justify-center w-[800px] rounded-xl bg-transparent h-[530px]">

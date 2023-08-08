@@ -12,7 +12,8 @@ const Search = ({ contract }) => {
     const [validSearch, setvalidSearch] = useState(false);
     const searchProfile = async () => {
         if (val === 0) {
-            const res = await contract.searchUser(num);
+            const number = num.slice(2);
+            const res = await contract.searchUser(number);
             setvalidSearch(true);
             if (res.Address === "0x0000000000000000000000000000000000000000") {
                 toast.error('No Account Found!',

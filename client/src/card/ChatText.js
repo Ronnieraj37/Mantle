@@ -66,7 +66,7 @@ const ChatText = ({ user, msg, setsendMsg, setloading }) => {
     <div>
       <Toaster />
       <div className="relative flex flex-row">
-        <div onMouseEnter={() => { sethoover(true) }} onMouseLeave={() => { sethoover(false) }} className={`flex relative hover:bg-gray-600  justify-start whitespace-normal mb-1 mt-1 mx-1 px-4 w-[300px] py-3 rounded-2xl ${breakWord ? "break-all" : "break-before-auto"} ${msg[0] === user.friendAddress ? "mr-96  bg-gray-700 " : "ml-96 bg-gray-500 "} `}>
+        <div onMouseEnter={() => { sethoover(true) }} onMouseLeave={() => { sethoover(false) }} className={`flex relative hover:bg-gray-600 text-end justify-start whitespace-normal mb-1 mt-1 mx-1 px-4 w-[300px] py-3 rounded-2xl ${breakWord ? "break-all" : "break-before-auto"} ${msg[0] === user.friendAddress ? "mr-96  bg-gray-700 " : "ml-96 bg-gray-500 "} `}>
           {msg[1] ? <div>{msg[2]}</div> : <img onClick={openImage} src={msg[2]} className='h-max' />}
           {hoover &&
             <div onClick={replyAI}>

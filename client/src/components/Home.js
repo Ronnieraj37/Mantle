@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers';
 import { toast, Toaster } from "react-hot-toast";
 import PeerChat from "../artifacts/contracts/PeerChat.sol/PeerChat.json"
-import Registration from './Registration';
 import { BiLoaderAlt } from "react-icons/bi"
 
 const Home = ({ setverified, setaccount, contract, setaccountDetails, connected, account, setcontract, setprovider, setconnected }) => {
-  const [newUser, setnewUser] = useState(false);
   const [name, setname] = useState('');
   const [description, setdescription] = useState('');
   const [number, setnumber] = useState('');
   const [modalOpen, setmodalOpen] = useState(false);
-  const [isVerified, setisVerified] = useState(false);
   const [Loading, setLoading] = useState(false);
   const connectFetch = async () => {
     const loadProvider = async (provider) => {
@@ -64,7 +61,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
         setaccount(address);
         // let contractAddress = "0x67CB05bb62b72DCbd359670acEb53E0159bda947"; // xdc
         // let contractAddress = "0x196d4119944CD005AD917466B8e2e2Ec018FA547" //mantle
-        let contractAddress = "0xEe5684B9c5045054fB2C24B5f03D0bE9A1448594"; //mumbai
+        let contractAddress = "0x48de2c416E84A0aAb427FB87E7142476DdB0cBC2"; //mumbai
         const contractInstance = new ethers.Contract(
           contractAddress,
           PeerChat.abi,
@@ -106,7 +103,6 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
       setaccountDetails(result);
       setverified(true);
     } catch (error) {
-      setnewUser(true);
       setmodalOpen(true);
       toast.error("Create An Account",
         {
@@ -123,7 +119,6 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
     try {
       await contract.registerUser(name, description, number);
       setmodalOpen(false);
-      setnewUser(false);
       toast.success("Account Created !",
         {
           style: {
@@ -157,7 +152,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
   }
   useEffect(() => {
     connected && getUser();
-  }, [connected, isVerified]);
+  }, [connected]);
 
   return (
     <div className='flex relative w-[1300px]' >
@@ -170,11 +165,10 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
             <p className="">Connect</p>
           </button>}
         </div>
-
         <Toaster toastOptions={{ duration: 3000 }} />
       </div>
       {Loading &&
-        <div className='flex flex-col items-center relative'>
+        <div className='flex flex-col w-[1000px] items-center relative'>
           <BiLoaderAlt className='mt-64 animate-spin' size={69} />
         </div>
       }
@@ -182,15 +176,14 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
         <div>
           {modalOpen &&
             <div className='flex flex-col w-[1000px]  items-center relative' >
-              {isVerified && <div className="mt-36 flex flex-col items-center">
+              <div className="mt-36 flex flex-col items-center">
                 <div className='flex p-3 items-center justify-around '>
                   <input onChange={(event) => { setname(event.target.value) }} className='m-1 text-black px-1 py-2 rounded-xl' required placeholder=' Name' type='text' />
-                  <input className='m-1 text-black px-1 py-2 disabled:bg-slate-300 rounded-xl' required value={number} disabled type='number' />
+                  <input onChange={(event) => { setnumber(event.target.value) }} className='m-1 text-black px-1 py-2 disabled:bg-slate-300 rounded-xl' required placeholder='999..' type='number' />
                 </div>
                 <input onChange={(event) => { setdescription(event.target.value) }} className='m-3 px-1 py-2 w-[380px] h-[60px]  text-black rounded-xl' placeholder='About' defaultValue="Hey I'm using Vendork" type='text' />
                 <button className='flex items-center py-1 px-4  rounded-xl bg-blue-500' onClick={addUser}>Create Account</button>
-              </div>}
-              {!isVerified && <Registration contract={contract} setisVerified={setisVerified} setnumber={setnumber} />}
+              </div>
             </div>
           }
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import FriendList from '../card/FriendList';
 import Search from '../card/Search';
 import Chat from '../card/Chat';
+import Posts from '../card/Posts';
 import HomePage from '../card/HomePage';
 import { BsSearch } from "react-icons/bs";
 import { FcSearch, FcHome, FcList, FcSms } from "react-icons/fc";
@@ -23,6 +24,9 @@ const BottomBar = ({ accountDetails, account, contract }) => {
   }
   const toHome = (event) => {
     setselected(1);
+  }
+  const toPosts = (event) => {
+    setselected(4);
   }
   return (
     <div className='flex flex-row -ml-5'>
@@ -68,7 +72,7 @@ const BottomBar = ({ accountDetails, account, contract }) => {
             Requests
           </div>
         </button>
-        <button className={` rounded-3xl mt-7  px-7 py-4  items-center flex flex-row ${selected === 4 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
+        <button onClick={toPosts} className={` rounded-3xl mt-7  px-7 py-4  items-center flex flex-row ${selected === 4 ? " bg-[#081e2b] scale-[105%]" : "hover:bg-[#081e2b]"}`}>
           <Profile contract={contract} accountDetails={accountDetails} account={account} />
         </button>
       </div>
@@ -95,6 +99,11 @@ const BottomBar = ({ accountDetails, account, contract }) => {
         {selected === 3 &&
           <div>
             <FriendList contract={contract} />
+          </div>
+        }
+        {selected === 4 &&
+          <div>
+            <Posts address={accountDetails.Address} contract={contract} />
           </div>
         }
       </div>
