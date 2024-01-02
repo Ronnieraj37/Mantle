@@ -1,47 +1,15 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-contract PeerChat {
-    address public owner;
+import "./storage/ChatStorage.sol";
 
-    constructor() {
-        owner = msg.sender;
-    }
+contract Peerchat is ChatStorage{ 
 
-    struct User {
-        string Name;
-        string About;
-        string uniqueId;
-        address Address;
-        string Image;
-    }
-
-    struct Message {
-        address sender;
-        bool isText;
-        string message;
-        uint256 timestamp;
-    }
-
-    struct Friend {
-        string name;
-        address friendAddress;
-    }
-
-    struct Post {
-        address sender;
-        string hash;
-        uint256 timestamp;
-    }
-
-    mapping(address => Post[]) private posts;
-    mapping(address => Friend[]) private friendList;
     mapping(address => User[]) private friendRequests;
     mapping(address => mapping(address => bool)) public isFriendRequest;
     mapping(address => mapping(address => bool)) private isFriend;
     mapping(address => mapping(address => bool)) private isBlocked;
     mapping(address => User) private userList;
-    mapping(bytes32 => Message[]) private allMessages;
     mapping(string => address) public uniqueUser;
 
     function searchUser(
@@ -102,9 +70,10 @@ contract PeerChat {
         require(isFriend[msg.sender][_friend] == false, "Already Friend");
         require(isFriend[_friend][msg.sender] == false, "Already Friend");
         Friend memory friend = Friend(userList[_friend].Name, _friend);
-        friendList[msg.sender].push(friend);
+        Storage storage _store = userStorage();
+        _store.friendList[msg.sender].push(friend);
         friend = Friend(userList[msg.sender].Name, msg.sender);
-        friendList[_friend].push(friend);
+        _store.friendList[_friend].push(friend);
         isFriend[_friend][msg.sender] = true;
         isFriend[msg.sender][_friend] = true;
         isFriendRequest[msg.sender][_friend] = false;
@@ -144,21 +113,22 @@ contract PeerChat {
         require(isFriend[msg.sender][pubKey1], "No Such Friend Found!");
         isFriend[pubKey1][msg.sender] = false;
         isFriend[msg.sender][pubKey1] = false;
-        for (uint256 i = 0; i < friendList[pubKey1].length; i++) {
-            if (friendList[pubKey1][i].friendAddress == msg.sender) {
-                friendList[pubKey1][i] = friendList[pubKey1][
-                    friendList[pubKey1].length - 1
+        Storage storage _store = userStorage();
+        for (uint256 i = 0; i < _store.friendList[pubKey1].length; i++) {
+            if (_store.friendList[pubKey1][i].friendAddress == msg.sender) {
+                _store.friendList[pubKey1][i] = _store.friendList[pubKey1][
+                    _store.friendList[pubKey1].length - 1
                 ];
-                friendList[pubKey1].pop();
+                _store.friendList[pubKey1].pop();
                 break;
             }
         }
-        for (uint256 i = 0; i < friendList[msg.sender].length; i++) {
-            if (friendList[msg.sender][i].friendAddress == pubKey1) {
-                friendList[msg.sender][i] = friendList[msg.sender][
-                    friendList[msg.sender].length - 1
+        for (uint256 i = 0; i < _store.friendList[msg.sender].length; i++) {
+            if (_store.friendList[msg.sender][i].friendAddress == pubKey1) {
+                _store.friendList[msg.sender][i] = _store.friendList[msg.sender][
+                    _store.friendList[msg.sender].length - 1
                 ];
-                friendList[msg.sender].pop();
+                _store.friendList[msg.sender].pop();
                 break;
             }
         }
@@ -179,7 +149,8 @@ contract PeerChat {
     }
 
     function getFriendList() external view returns (Friend[] memory) {
-        return friendList[msg.sender];
+        Storage storage _store = userStorage();
+        return _store.friendList[msg.sender];
     }
 
     function _getChatCode(
@@ -206,7 +177,8 @@ contract PeerChat {
             _msg,
             block.timestamp
         );
-        allMessages[chatCode].push(newMsg);
+        addMessage(chatCode,newMsg);
+        // allMessages[chatCode].push(newMsg);
     }
 
     function sendImage(address friendKey, string calldata _hash) external {
@@ -222,14 +194,15 @@ contract PeerChat {
             _hash,
             block.timestamp
         );
-        allMessages[chatCode].push(newMsg);
+        addMessage(chatCode,newMsg);
+        // allMessages[chatCode].push(newMsg);
     }
 
     function readMessage(
         address friendKey
     ) external view returns (Message[] memory) {
         bytes32 chatCode = _getChatCode(msg.sender, friendKey);
-        return allMessages[chatCode];
+        return viewMessages(chatCode);
     }
 
     //add profile photo
@@ -240,11 +213,13 @@ contract PeerChat {
     //add post
     function addPost(string calldata _hash) external {
         Post memory newpost = Post(msg.sender, _hash, block.timestamp);
-        posts[msg.sender].push(newpost);
+        Storage storage _store = userStorage();
+        _store.posts[msg.sender].push(newpost);
     }
 
     function retrievePost(address _user) external view returns (Post[] memory) {
-        return (posts[_user]);
+        Storage storage _store = userStorage();
+        return (_store.posts[_user]);
     }
 
     //check if user exists
