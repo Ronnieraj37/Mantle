@@ -14,6 +14,9 @@ module.exports = {
       runs: 200
     }
   },
+  paths:{
+    artifacts:"../client/src/artifacts",
+  },
   networks:{
     mumbai: {
       url: process.env.POLYGON_MUMBAI,
