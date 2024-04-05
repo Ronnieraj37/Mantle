@@ -39,7 +39,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
                   symbol: 'MATIC',
                   decimals: 18
                 },
-                rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+                rpcUrls: ['https://polygon-mumbai.infura.io/v3/4458cf4d1689497b9a38b1d6bbf05e78'],
                 blockExplorerUrls: ['https://mumbai.polygonscan.com']
               }]
             })
@@ -68,7 +68,7 @@ const Home = ({ setverified, setaccount, contract, setaccountDetails, connected,
           PeerChat.abi,
           signer
         );
-        console.log("Contract",contractInstance);
+        console.log("Contract", contractInstance);
         setcontract(contractInstance);
         setprovider(provider);
         setconnected(true);
