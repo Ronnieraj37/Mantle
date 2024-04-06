@@ -6,6 +6,7 @@ Welcome to our decentralized peer-to-peer (P2P) application built on the blockch
 
 - Node.js: v20.11.1
 - npm: v10.2.4
+- ReactJs: v18.2.0
 
 ## Getting Started
 
