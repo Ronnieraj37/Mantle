@@ -1,16 +1,15 @@
-Compilation finished successfully
-DiamondCutFacet deployed: 0x13681F3E7bAb33D051daC05ebB18a66417d90E7e
-Diamond deployed: 0x9A99790Bdbe9460eB8e0b80b729Edb74F140fCfF
-DiamondInit deployed: 0xBE0D2282BD7765B6A0D148B595db6A9dD2D6622b
+DiamondCutFacet deployed: 0x744E85cb0E9BF1BB1e7281CDbD92760f6034b40D
+Diamond deployed: 0xE6548fDD1a8eEe78012d0E3e8A1e0ACb7788AC40
+DiamondInit deployed: 0xae24032c24438f3fd689C9b76d704fe036C88F5f
 
 Deploying facets
-DiamondLoupeFacet deployed: 0xC77C4a390468Dff4df6bae11caadBE21A01B3418
-OwnershipFacet deployed: 0xB23a16D284f5875A4A463a214e8FC6089d844913
-Peerchat deployed: 0x8012aFf8705Ff1625306fB82d66C3F9825808306
+DiamondLoupeFacet deployed: 0x82A3c16204aa62E454054D6eB49Cc65C64687318
+OwnershipFacet deployed: 0x018b59D2b831955371320812693D54e51E563223
+Peerchat deployed: 0x9756c62e1e8be0bfD401CB74914420A8188F772D
 
 Diamond Cut: [
   {
-    facetAddress: '0xC77C4a390468Dff4df6bae11caadBE21A01B3418',
+    facetAddress: '0x82A3c16204aa62E454054D6eB49Cc65C64687318',
     action: 0,
     functionSelectors: [
       '0xcdffacc6',
@@ -24,7 +23,7 @@ Diamond Cut: [
     ]
   },
   {
-    facetAddress: '0xB23a16D284f5875A4A463a214e8FC6089d844913',
+    facetAddress: '0x018b59D2b831955371320812693D54e51E563223',
     action: 0,
     functionSelectors: [
       '0x8da5cb5b',
@@ -35,7 +34,7 @@ Diamond Cut: [
     ]
   },
   {
-    facetAddress: '0x8012aFf8705Ff1625306fB82d66C3F9825808306',
+    facetAddress: '0x9756c62e1e8be0bfD401CB74914420A8188F772D',
     action: 0,
     functionSelectors: [
       '0x2b8cc346',
@@ -64,5 +63,5 @@ Diamond Cut: [
     ]
   }
 ]
-Diamond cut tx:  0x6985767f1200c06894c16a95929e61fa33f7855f5044b5bcf46d42c035a84a0e
-Completed diamond cut 0x9A99790Bdbe9460eB8e0b80b729Edb74F140fCfF
+Diamond cut tx:  0x61fae6bdbc7f0c03ff08e2dadd448c584e73f13dacfd1398711be47e6cf9d6d6
+Completed diamond cut 0xE6548fDD1a8eEe78012d0E3e8A1e0ACb7788AC40

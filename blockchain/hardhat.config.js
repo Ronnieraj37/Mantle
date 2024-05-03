@@ -1,26 +1,25 @@
-
 /* global ethers task */
-require('@nomiclabs/hardhat-waffle')
+require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: '0.8.6',
+  solidity: "0.8.6",
   settings: {
     optimizer: {
       enabled: true,
-      runs: 200
-    }
+      runs: 200,
+    },
   },
-  paths:{
-    artifacts:"../client/src/artifacts",
+  paths: {
+    artifacts: "../client/src/artifacts",
   },
-  networks:{
-    mumbai: {
-      url: process.env.POLYGON_MUMBAI,
+  networks: {
+    amoy: {
+      url: process.env.POLYGON_AMOY,
       accounts: [process.env.PRIVATE_KEY],
     },
-  }
-}
+  },
+};
